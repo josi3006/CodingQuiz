@@ -1,11 +1,4 @@
-// Variables needed to run things
 
-// var aBtn = document.getElementById("#buttonA")
-var bBtn = document.getElementById('#buttonB')
-var cBtn = document.getElementById('#buttonC')
-var dBtn = document.getElementById('#buttonD')
-
-// document.querySelector("#buttonA")
 
 // Array of Questions and Answers
 
@@ -131,18 +124,86 @@ var qaArray = [
 ]
 
 
-// Functions that make it work
+
+// This ensures the page loads before executing any functionality
+
+$(document).ready(function() {
 
 
-// This function renders the questions and answers
 
-function chkr() {
+// This just sets the iteration number for looping through the questions
+  var i = 0
 
-        for (var i = 0; i < qaArray.length; i++)
 
-        alert(qaArray[i].question),
-        document.getElementById('#buttonA').setAttribute('value', qaArray[i].answers.a)
-      
-}
+
+// This triggers the countdown when the Go Button is clicked
+
+$('#goButton').on('click', function() {
+
+var timeleft = 150;
+var downloadTimer = setInterval(function(){
+  $("#time").text(timeleft + " seconds remaining");
+  timeleft -= 1;
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+    $("#time").text("Finished")
+  }
+}, 1000)
+
+});
+
+
+// This renders the questions and answer buttons
+
+$('#goButton').on('click', function chkr()  {
+
+
+  var questionText = $('<h3>')
+
+      questionText.text(qaArray[i].question)
+      $('#questionDiv').html(questionText)
+
+  var aButton = $('<input>')
+
+      aButton.attr('type', 'button')
+      aButton.attr('value', qaArray[i].answers.a)
+      $('#buttonDiva').html(aButton)
+
+  var bButton = $('<input>')
+
+      bButton.attr('type', 'button')
+      bButton.attr('value', qaArray[i].answers.b)
+      $('#buttonDivb').html(bButton)
+
+  var cButton = $('<input>')
+
+      cButton.attr('type', 'button')
+      cButton.attr('value', qaArray[i].answers.c)
+      $('#buttonDivc').html(cButton)
+
+  var dButton = $('<input>')
+
+      dButton.attr('type', 'button')
+      dButton.attr('value', qaArray[i].answers.d)
+      $('#buttonDivd').html(dButton)
+
+
+        console.log(qaArray[i].question) 
+
+        console.log(qaArray[i].answers.a)
+        console.log(qaArray[i].answers.b)
+        console.log(qaArray[i].answers.c)
+        console.log(qaArray[i].answers.d)
+
+        i++
+        
+        $(':input').click(function() {
+          console.log('woot!'),        
 
 chkr()
+        },
+
+
+    );
+  })
+})
