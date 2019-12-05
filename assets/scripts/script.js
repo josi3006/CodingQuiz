@@ -11,7 +11,7 @@ var qaArray = [
             c: '<HTML>',
             d: '<span>'
           },
-          correctAnswer: 'b'
+          correctAnswer: 'bButton'
         },
 
         {
@@ -22,7 +22,7 @@ var qaArray = [
                   c: 'JSON',
                   d: 'console.log'
           },
-          correctAnswer: 'c'
+          correctAnswer: 'cButton'
         },
 
 
@@ -34,7 +34,7 @@ var qaArray = [
                   c: 'sends form data to the server',
                   d: 'appends an item to the end of an array'
           },
-          correctAnswer: 'd'
+          correctAnswer: 'dButton'
         },
 
 
@@ -46,7 +46,7 @@ var qaArray = [
                   c: 'C',
                   d: 'D'
           },
-          correctAnswer: 'c'
+          correctAnswer: 'cButton'
         },
           
 
@@ -58,7 +58,7 @@ var qaArray = [
                   c: 'condition, iteration, declaration',
                   d: 'none of the above'
           },
-          correctAnswer: 'b'
+          correctAnswer: 'bButton'
         },
 
 
@@ -70,7 +70,7 @@ var qaArray = [
                   c: 'boolean',
                   d: 'All of the above'
           },
-          correctAnswer: 'a'
+          correctAnswer: 'aButton'
         },
 
 
@@ -82,7 +82,7 @@ var qaArray = [
                 c: 'boolean',
                 d: 'All of the above'
           },
-        correctAnswer: 'a'
+        correctAnswer: 'aButton'
         },
 
 
@@ -94,7 +94,7 @@ var qaArray = [
                 c: 'The code that allows a browser to render HTML',
                 d: 'A method included in the browser'
           },
-          correctAnswer: 'b'
+          correctAnswer: 'bButton'
         },
 
 
@@ -106,7 +106,7 @@ var qaArray = [
                 c: 'In its own file',
                 d: 'All of the above'
           },
-          correctAnswer: 'd'
+          correctAnswer: 'dButton'
         },
 
 
@@ -119,7 +119,7 @@ var qaArray = [
                   d: 'People!'
 
           },
-          correctAnswer: 'd'
+          correctAnswer: 'dButton'
         }
 ]
 
@@ -131,16 +131,21 @@ $(document).ready(function() {
 
 
 
-// This just sets the iteration number for looping through the questions
+// This declares iteration number for looping through the questions
   var i = 0
 
+
+// This declares the time penalty for incorrect answers
+
+  var penalty = 0
+
+  var timeleft = 150;
 
 
 // This triggers the countdown when the Go Button is clicked
 
 $('#goButton').on('click', function() {
 
-var timeleft = 150;
 var downloadTimer = setInterval(function(){
   $("#time").text(timeleft + " seconds remaining");
   timeleft -= 1;
@@ -167,24 +172,28 @@ $('#goButton').on('click', function chkr()  {
 
       aButton.attr('type', 'button')
       aButton.attr('value', qaArray[i].answers.a)
+      aButton.attr('id', 'aButton')
       $('#buttonDiva').html(aButton)
 
   var bButton = $('<input>')
 
       bButton.attr('type', 'button')
       bButton.attr('value', qaArray[i].answers.b)
+      bButton.attr('id', 'bButton')
       $('#buttonDivb').html(bButton)
 
   var cButton = $('<input>')
 
       cButton.attr('type', 'button')
       cButton.attr('value', qaArray[i].answers.c)
+      cButton.attr('id', 'cButton')
       $('#buttonDivc').html(cButton)
 
   var dButton = $('<input>')
 
       dButton.attr('type', 'button')
       dButton.attr('value', qaArray[i].answers.d)
+      dButton.attr('id', 'dButton')
       $('#buttonDivd').html(dButton)
 
 
@@ -195,12 +204,36 @@ $('#goButton').on('click', function chkr()  {
         console.log(qaArray[i].answers.c)
         console.log(qaArray[i].answers.d)
 
-        i++
+       
         
         $(':input').click(function() {
-          console.log('woot!'),        
+          var chosen1 = $(this).attr('id');
+          var right1 = (qaArray[i].correctAnswer)
+          console.log('woot'); 
+          console.log(chosen1);
+          console.log(right1);
 
-chkr()
+          if (chosen1 === right1) {penalty = penalty + 0}
+          else {penalty = penalty + 20};
+        
+          console.log(penalty)          
+
+          i++
+
+          if (i >= 10) {results()}
+            
+
+          else {     
+  
+
+chkr()}
+
+function results() {
+    console.log('Subtract' + penalty + 'seconds');
+    alert('Your time score: ' + timeleft);
+    alert('Your time penalty: ' + penalty);
+    alert('Your total score: ' + (timeleft - penalty));
+return}
         },
 
 
