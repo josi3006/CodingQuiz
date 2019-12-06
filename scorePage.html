@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coding Quiz Score</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href='assets/style/style.css'>
+
+
+
+
+
+</head>
+
+<body background='assets/images/background.jpg'>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-12">&nbsp;</div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col"></div>
+
+            <div class="col-lg-6">
+
+                    <div class="text-center shadow-sm p-3 mb-5 bg-white rounded mw-100">
+                            <h1 class="text-primary">Congratulations!</h1>
+                            <h3 class='border border-primary' id='infoDiv'></h3>
+
+
+                    </div>
+
+            </div>
+
+            <div class="col"></div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+    <script>
+
+        var newInit = localStorage.getItem('initials');
+        var newScore = localStorage.getItem('score');
+
+        console.log(newInit);
+        console.log(newScore);
+
+        $('#infoDiv').append('Initials: ' + newInit + '<br>');
+        $('#infoDiv').append('Score: ' + newScore);
+
+    </script>
+
+
+</body>
+
+</html>

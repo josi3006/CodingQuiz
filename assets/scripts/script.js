@@ -142,12 +142,14 @@ $(document).ready(function() {
   var timeleft = 150;
 
 
+
+
 // This triggers the countdown when the Go Button is clicked
 
 $('#goButton').on('click', function() {
 
 var downloadTimer = setInterval(function(){
-  $("#time").text(timeleft + " seconds remaining");
+  $("#time").text('You have ' + timeleft + " seconds remaining");
   timeleft -= 1;
   if(timeleft <= 0){
     clearInterval(downloadTimer);
@@ -173,6 +175,7 @@ $('#goButton').on('click', function chkr()  {
       aButton.attr('type', 'button')
       aButton.attr('value', qaArray[i].answers.a)
       aButton.attr('id', 'aButton')
+      aButton.attr('class', 'btn btn-outline-primary btn-block')
       $('#buttonDiva').html(aButton)
 
   var bButton = $('<input>')
@@ -180,6 +183,8 @@ $('#goButton').on('click', function chkr()  {
       bButton.attr('type', 'button')
       bButton.attr('value', qaArray[i].answers.b)
       bButton.attr('id', 'bButton')
+      bButton.attr('class', 'btn btn-outline-primary btn-block')
+
       $('#buttonDivb').html(bButton)
 
   var cButton = $('<input>')
@@ -187,6 +192,8 @@ $('#goButton').on('click', function chkr()  {
       cButton.attr('type', 'button')
       cButton.attr('value', qaArray[i].answers.c)
       cButton.attr('id', 'cButton')
+      cButton.attr('class', 'btn btn-outline-primary btn-block')
+
       $('#buttonDivc').html(cButton)
 
   var dButton = $('<input>')
@@ -194,24 +201,18 @@ $('#goButton').on('click', function chkr()  {
       dButton.attr('type', 'button')
       dButton.attr('value', qaArray[i].answers.d)
       dButton.attr('id', 'dButton')
+      dButton.attr('class', 'btn btn-outline-primary btn-block')
+
       $('#buttonDivd').html(dButton)
 
 
-        console.log(qaArray[i].question) 
-
-        console.log(qaArray[i].answers.a)
-        console.log(qaArray[i].answers.b)
-        console.log(qaArray[i].answers.c)
-        console.log(qaArray[i].answers.d)
 
        
         
         $(':input').click(function() {
           var chosen1 = $(this).attr('id');
           var right1 = (qaArray[i].correctAnswer)
-          console.log('woot'); 
-          console.log(chosen1);
-          console.log(right1);
+      
 
           if (chosen1 === right1) {penalty = penalty + 0}
           else {penalty = penalty + 20};
@@ -230,13 +231,40 @@ chkr()}
 
 function results() {
     console.log('Subtract' + penalty + 'seconds');
-    alert('Your time score: ' + timeleft);
-    alert('Your time penalty: ' + penalty);
-    alert('Your total score: ' + (timeleft - penalty));
-return}
-        },
+   
+
+    var score = (timeleft - penalty)
 
 
-    );
-  })
-})
+
+    $('#infoDiv').append('Your time score: ' + timeleft + '<br>')
+    $('#infoDiv').append('Minus time penalty: ' + penalty + '<br>')
+    $('#infoDiv').append('<h3>' + 'Your total score: ' + score)
+
+var initials = prompt('Please enter your initials: ')
+
+function next() {
+    window.location = ('scorePage.html')}
+
+
+
+localStorage.setItem('initials', initials);
+localStorage.setItem('score', score)
+
+
+
+next();
+
+return;
+
+}     
+  
+});
+
+});
+
+});
+
+
+
+
