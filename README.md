@@ -5,4 +5,4 @@ This web app allows the user to take a quiz on coding, which is timed, and recei
 
 You can find the deployed app here:  https://josi3006.github.io/CodingQuiz/
 
-![Image description](link-to-image)
+![Code Quiz Screenshot](CodeQuiz.png)
